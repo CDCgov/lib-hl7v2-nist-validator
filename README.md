@@ -39,12 +39,12 @@ This project uses some 3rd party code from NIST. The source code is available at
 
 ## Contact Info:
 
-|Name|Email|Role|
-|----|-----|----|
+|Name|Email| Role  |
+|----|-----|-------|
 |Snelick, Robert D.| <robert.snelick@nist.gov> | (Fed) |
-|Hossam Tamri | <hossam.tamri@nist.gov> | (Tech)|
-|Caroline Rosin | <caroline.rosin@nist.gov> | (Assoc) |
-|Crouzier, Nicolas (Assoc) | <nicolas.crouzier@nist.gov> | |
+|Hossam Tamri | <hossam.tamri@nist.gov> | (Tech) |
+|Caroline Rosin | <caroline.rosin@nist.gov> | (Fed) |
+|Crouzier, Nicolas (Assoc) | <nicolas.crouzier@nist.gov> |       |
 
 ## Building this project
 
