@@ -1,4 +1,4 @@
-name: Publish Jar on Push to main
+name: Publish package on Push to main
 
 on:
   workflow_dispatch:
@@ -17,11 +17,11 @@ jobs:
 
       - uses: actions/setup-java@v3.10.0
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'adopt'
-          cache: sbt
+          cache: maven
 
       - name: Publish Package - lib-hl7v2-nist
-        run: sbt publish
+        run: maven publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
