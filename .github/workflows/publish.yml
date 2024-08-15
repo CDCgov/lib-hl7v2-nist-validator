@@ -3,7 +3,7 @@ name: Publish package on Push to main
 on:
   workflow_dispatch:
   push:
-    branches: ['main']
+    branches: ['testm']
 
 jobs:
   publish:
