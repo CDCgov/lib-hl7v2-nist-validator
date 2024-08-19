@@ -12,6 +12,12 @@
         <kotlin.version>1.9.0</kotlin.version>
         <nist.version>1.6.3</nist.version>
     </properties>
+    <distributionManagement>
+    <repository>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/ucf4/lib-hl7v2-nist-validator</url>
+    </repository>
+    </distributionManagement>
     <repositories>
         <repository>
             <id>hit-nexus</id>
