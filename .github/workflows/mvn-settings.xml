@@ -1,0 +1,9 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0">
+<servers>
+<server>
+<id>github</id>
+<username>ucf4</username> <!-- Replace with your GitHub username -->
+<password>${env.LIB_GITHUB_TOKEN}</password>
+</server>
+</servers>
+</settings>
