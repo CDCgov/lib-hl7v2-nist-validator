@@ -21,4 +21,4 @@ jobs:
       - name: Publish Package - lib-hl7v2-nist
         run: mvn -B package
         env:
-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          GITHUB_TOKEN: '${{ secrets.LIB_GITHUB_TOKEN }}'
