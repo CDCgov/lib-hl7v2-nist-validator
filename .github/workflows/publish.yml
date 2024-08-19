@@ -25,7 +25,9 @@ jobs:
         run: mvn clean install
 
       - name: deploy to github packages
-        run: mvn deploy --settings .github/mvn-settings.xml
+        run: mvn deploy --settings /home/runner/work/lib-hl7v2-nist-validator/lib-hl7v2-nist-validator/.github/mvn-settings.xml
+        #.github/mvn-settings.xml
+        #/home/runner/work/lib-hl7v2-nist-validator/lib-hl7v2-nist-validator/.github/mvn-settings.xml
         
         env:
           GITHUB_TOKEN: '${{ secrets.LIB_GITHUB_TOKEN }}'
