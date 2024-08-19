@@ -1,6 +1,6 @@
-name: Publish package on Push to main
-'on':
-  workflow_dispatch: null
+name: Deploy Maven Package
+
+on:
   push:
     branches:
       - testm
@@ -12,22 +12,19 @@ jobs:
       packages: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+        uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: temurin
-          cache: maven
-      - name: Publish Package - lib-hl7v2-nist
-        run: mvn -B package
+          distribution: 'adoptopenjdk'
+          
+      #- name: Publish Package - lib-hl7v2-nist
+      #  run: mvn -B package
         
-      - name: build with mvn 
+      - name: Build with mvn 
         run: mvn clean install
 
-      - name: deploy to github packages
-        run: mvn deploy --settings /home/runner/work/lib-hl7v2-nist-validator/lib-hl7v2-nist-validator/.github/mvn-settings.xml
-        #.github/mvn-settings.xml
-        #/home/runner/work/lib-hl7v2-nist-validator/lib-hl7v2-nist-validator/.github/mvn-settings.xml
-        
+      - name: Deploy to Github Packages
+        run: mvn deploy --settings .github/workflows/mvn-settings.xml
         env:
           GITHUB_TOKEN: '${{ secrets.LIB_GITHUB_TOKEN }}'
