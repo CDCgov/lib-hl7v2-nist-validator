@@ -1,10 +1,9 @@
 name: Publish package on Push to main
-
-on:
-  workflow_dispatch:
+'on':
+  workflow_dispatch: null
   push:
-    branches: ['testm']
-
+    branches:
+      - testm
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -14,12 +13,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - uses: actions/setup-java@v4
         with:
           java-version: '17'
-          distribution: 'temurin'
+          distribution: temurin
           cache: maven
-
       - name: Publish Package - lib-hl7v2-nist
-        run: mvn package
+        run: mvn -B package
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
