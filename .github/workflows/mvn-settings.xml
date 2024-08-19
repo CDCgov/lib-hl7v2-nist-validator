@@ -17,7 +17,7 @@
         </repository>
         <repository>
           <id>github</id>
-          <url>https://maven.pkg.github.com/LIB_GITHUB_ACTOR/lib-hl7v2-nist-validator</url>
+          <url>https://maven.pkg.github.com/cdc/lib-hl7v2-nist-validator</url>
           <snapshots>
             <enabled>true</enabled>
           </snapshots>
