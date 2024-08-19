@@ -19,7 +19,7 @@ jobs:
           distribution: temurin
           
       - name: Publish Package - lib-hl7v2-nist
-        run: mvn -B package
+        run: mvn -e package
         
       #- name: Build with mvn 
        # run: mvn clean install
