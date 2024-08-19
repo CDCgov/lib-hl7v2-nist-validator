@@ -17,7 +17,7 @@
         </repository>
         <repository>
           <id>github</id>
-          <url>https://maven.pkg.github.com/ucf4/lib-hl7v2-nist-validator</url>
+          <url>https://maven.pkg.github.com/ucf4@cdc.gov/lib-hl7v2-nist-validator</url>
           <snapshots>
             <enabled>true</enabled>
           </snapshots>
