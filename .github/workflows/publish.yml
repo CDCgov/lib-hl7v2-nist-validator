@@ -25,6 +25,6 @@ jobs:
         run: mvn clean install
 
       - name: Deploy to Github Packages
-        run: mvn -e deploy --settings .github/workflows/mvn-settings.xml
+        run: mvn -x deploy --settings .github/workflows/mvn-settings.xml
         env:
           GITHUB_TOKEN: '${{ secrets.LIB_GITHUB_TOKEN }}'
