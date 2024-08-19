@@ -21,7 +21,11 @@ jobs:
       - name: Publish Package - lib-hl7v2-nist
         run: mvn -B package
         
-      - name: mvn deploy
-        run: mvn deploy
+      - name: build with mvn 
+        run: mvn clean install
+
+      - name: deploy to github packages
+        run: mvn deploy --settings .github/mvn-settings.xml
+        
         env:
           GITHUB_TOKEN: '${{ secrets.LIB_GITHUB_TOKEN }}'
