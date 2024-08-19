@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'adoptopenjdk'
+          distribution: adoptopenjdk
           
       #- name: Publish Package - lib-hl7v2-nist
       #  run: mvn -B package
