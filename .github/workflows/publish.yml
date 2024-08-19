@@ -20,5 +20,8 @@ jobs:
           cache: maven
       - name: Publish Package - lib-hl7v2-nist
         run: mvn -B package
+        
+      - name: mvn deploy
+        run: mvn deploy
         env:
           GITHUB_TOKEN: '${{ secrets.LIB_GITHUB_TOKEN }}'
