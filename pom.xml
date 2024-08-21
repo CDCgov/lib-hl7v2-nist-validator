@@ -179,12 +179,14 @@
     </dependencies>
     <distributionManagement>
     <repository>
-        <id>github</id>
-        <url>https://maven.pkg.github.com/cdcgov/lib-hl7v2-nist-validator</url>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/cdcgov/lib-hl7v2-nist-validator</url>
     </repository>
+
+    <!--Maven Central distribution -->
     <repository>
-        <id>sonatype</id>
-        <url>https://mvnrepository.com/gov.cdc.lib-hl7v2-nist-validator</url>
+      <id>central</id>
+      <url>https://mvnrepository.com/gov.cdc.lib-hl7v2-nist-validator</url>
     </repository>
     </distributionManagement>
 </project>
