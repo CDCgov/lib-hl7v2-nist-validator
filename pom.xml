@@ -186,7 +186,7 @@
     <distributionManagement>
     <repository>
         <id>sonatype</id>
-        #<url>https://mvnrepository.com/gov.cdc.lib-hl7v2-nist-validator</url>
+        <url>https://mvnrepository.com/gov.cdc.lib-hl7v2-nist-validator</url>
     </repository>
     </distributionManagement>
 </project>
