@@ -177,4 +177,10 @@
             <version>2.0.5</version>
         </dependency>
     </dependencies>
+    <distributionManagement>
+    <repository>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/cdcgov/lib-hl7v2-nist-validator</url>
+    </repository>
+    </distributionManagement>
 </project>
