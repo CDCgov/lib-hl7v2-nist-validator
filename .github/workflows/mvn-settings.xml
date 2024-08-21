@@ -6,4 +6,11 @@
       <password>${env.LIB_GITHUB_TOKEN}</password>
     </server>
   </servers>
+<servers>
+    <server>
+      <id>sonatype</id>
+      <username>${env.SONATYPE_USERNAME}</username>
+      <password>${env.SONATYPE_PASSWORD}</password>
+    </server>
+  </servers>
 </settings>
