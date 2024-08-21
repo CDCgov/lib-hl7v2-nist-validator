@@ -7,11 +7,8 @@ on:
    types: [created]  # This triggers the workflow when a release is created
 
 jobs:
- deploy:
+ publish:
    runs-on: ubuntu-latest
-   permissions:
-      contents: read
-      packages: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
