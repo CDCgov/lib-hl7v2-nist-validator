@@ -1,5 +1,4 @@
 name: Deploy Maven Packages
-
 on:
   push:
     branches:
