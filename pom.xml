@@ -181,7 +181,7 @@
     <repository>
       <id>github</id>
       <url>https://maven.pkg.github.com/cdcgov/lib-hl7v2-nist-validator</url>
-    <repository />
+    </repository>
     </distributionManagement>
 <build>
     <plugins>
