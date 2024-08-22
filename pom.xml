@@ -182,11 +182,24 @@
       <id>github</id>
       <url>https://maven.pkg.github.com/cdcgov/lib-hl7v2-nist-validator</url>
     <repository />
-
-    <!--Maven Central distribution -->
+    </distributionManagement>
+<build>
+    <plugins>
+        <plugin>
+          <groupId>org.sonatype.central</groupId>
+          <artifactId>central-publishing-maven-plugin</artifactId>
+          <version>0.5.0</version>
+          <extensions>true</extensions>
+          <configuration>
+            <publishingServerId>central</publishingServerId>
+          </configuration>
+        </plugin>
+    </plugins>
+</build>
+    <!--Maven Central distribution 
     <repository>
       <id>central</id>
       <url>https://mvnrepository.com/gov.cdc.lib-hl7v2-nist-validator</url>
     <repository />
-    </distributionManagement>
+    </distributionManagement> -->
 </project>
