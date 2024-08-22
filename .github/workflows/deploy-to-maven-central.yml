@@ -20,7 +20,7 @@ jobs:
           distribution: temurin
 
     - name: Build and deploy to Maven Central
-      run: mvn deploy -DrepositoryId=central -Durl=https://mvnrepository.com/gov.cdc.lib-hl7v2-nist-validator
+      run: mvn deploy -DrepositoryId=central -Durl=https://maven.pkg.github.com/cdcgov/lib-hl7v2-nist-validator
       env:
         SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
         SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
