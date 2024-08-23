@@ -5,8 +5,6 @@
       <username>${env.LIB_GITHUB_ACTOR}</username>
       <password>${env.LIB_GITHUB_TOKEN}</password>
     </server>
-  </servers>
-<servers>
     <server>
       <id>central</id>
       <username>${env.SONATYPE_USERNAME}</username>
