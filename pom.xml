@@ -121,7 +121,7 @@
                 <version>2.22.2</version>
             </plugin>
             <plugin>
-          <groupId>gov.cdc</groupId>
+          <groupId>org.sonatype.central</groupId>
           <artifactId>lib-hl7v2-nist-validator</artifactId>
           <version>1.3.5-SNAPSHOT</version>
           <extensions>true</extensions>
