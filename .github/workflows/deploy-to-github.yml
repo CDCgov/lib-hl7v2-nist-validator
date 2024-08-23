@@ -21,13 +21,13 @@ jobs:
         run: mvn -B package
 
       - name: Publish package to github Repo
-        run: mvn deploy --settings .github/workflows/mvn-settings.xml
+        run: mvn -e switch deploy --settings .github/workflows/mvn-settings.xml
         env:
           LIB_GITHUB_ACTOR: '${{ secrets.LIB_GITHUB_ACTOR }}'
           LIB_GITHUB_TOKEN: '${{ secrets.LIB_GITHUB_TOKEN }}'
 
       - name: Publish package to Maven Central
-        run: mvn deploy --settings .github/workflows/mvn-settings.xml
+        run: mvn -e switch deploy --settings .github/workflows/mvn-settings.xml
         env:
           SONATYPE_USERNAME: '${{ secrets.SONATYPE_USERNAME }}'
           SONATYPE_PASSWORD: '${{ secrets.SONATYPE_PASSWORD }}'
