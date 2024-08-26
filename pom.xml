@@ -32,12 +32,6 @@
         <developerConnection>scm:git:ssh://github.com/CDCgov/lib-hl7v2-nist-validator.git</developerConnection>
         <url>https://github.com/CDCgov/lib-hl7v2-nist-validator/tree/main</url>
     </scm>
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <url>https://maven.pkg.github.com/cdcgov/lib-hl7v2-nist-validator</url>
-        </repository>
-    </distributionManagement>
     <repositories>
     <repository>
         <id>hit-nexus</id>
@@ -260,5 +254,10 @@
             <version>2.0.5</version>
         </dependency>
     </dependencies>
-
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/cdcgov/lib-hl7v2-nist-validator</url>
+        </repository>
+    </distributionManagement>
 </project>
