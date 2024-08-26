@@ -31,4 +31,5 @@ jobs:
         env:
           SONATYPE_USERNAME: '${{ secrets.SONATYPE_USERNAME }}'
           SONATYPE_PASSWORD: '${{ secrets.SONATYPE_PASSWORD }}'
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE }}'
+          GPG_PRIVATE_KEY: '${{ secrets.GPG_PRIVATE_KEY }}'

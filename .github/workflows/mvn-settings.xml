@@ -11,7 +11,8 @@
       <password>${env.SONATYPE_PASSWORD}</password>
     </server>
     <server>
-      <id>gpg.passphrase</id>
+      <id>gpg</id>
+      <privatekey>${env.GPG_PRIVATE_KEY}</privatekey>
       <passphrase>${env.GPG_PASSPHRASE}</passphrase>
     </server>
   </servers>
