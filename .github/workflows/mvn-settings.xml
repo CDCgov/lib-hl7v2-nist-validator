@@ -5,7 +5,7 @@
       <username>${env.LIB_GITHUB_ACTOR}</username>
       <password>${env.LIB_GITHUB_TOKEN}</password>
     </server>
-    <server>
+    <!--<server>
       <id>central</id>
       <username>${env.SONATYPE_USERNAME}</username>
       <password>${env.SONATYPE_PASSWORD}</password>
@@ -14,6 +14,6 @@
       <id>gpg</id>
       <privatekey>${env.GPG_PRIVATE_KEY}</privatekey>
       <passphrase>${env.GPG_PASSPHRASE}</passphrase>
-    </server>
+    </server>-->
   </servers>
 </settings>
