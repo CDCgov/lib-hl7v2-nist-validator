@@ -37,6 +37,14 @@
             <id>github</id>
             <url>https://maven.pkg.github.com/cdcgov/lib-hl7v2-nist-validator</url>
         </repository>
+        <mavenrepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </mavenrepository>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
     </distributionManagement>
 
     <properties>
@@ -92,16 +100,11 @@
                         <goals>
                             <goal>sign</goal>
                         </goals>
-                        <configuration>
-                        <keyname>0x26DE68BD</keyname>
-                        <!-- Prevent gpg from using pinentry programs -->
-                            <gpgArguments>
-                                <arg>--pinentry-mode</arg>
-                                <arg>loopback</arg>
-                            </gpgArguments>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <gpgPassphrase>${env.GPG_PASSPHRASE}</gpgPassphrase>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.sonatype.central</groupId>
