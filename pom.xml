@@ -93,6 +93,7 @@
                             <goal>sign</goal>
                         </goals>
                         <configuration>
+                        <keyname>0x26DE68BD</keyname>
                         <!-- Prevent gpg from using pinentry programs -->
                             <gpgArguments>
                                 <arg>--pinentry-mode</arg>

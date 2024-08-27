@@ -11,9 +11,9 @@
       <password>${env.SONATYPE_PASSWORD}</password>
     </server>-->
     <server>
-      <id>sign-artifacts</id>
-      <privatekey>${env.GPG_PRIVATE_KEY}</privatekey>
-      <passphrase>${env.GPG_PASSPHRASE}</passphrase>
+      <id>0x26DE68BD</id>
+      <!--<privatekey>${env.GPG_PRIVATE_KEY}</privatekey>-->
+      <passphrase>${env.TEST_PASSPHRASE}</passphrase>
     </server>
   </servers>
 </settings>

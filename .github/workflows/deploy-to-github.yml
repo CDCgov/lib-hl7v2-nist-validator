@@ -26,16 +26,16 @@ jobs:
       #   env:
       #     LIB_GITHUB_ACTOR: '${{ secrets.LIB_GITHUB_ACTOR }}'
       #     LIB_GITHUB_TOKEN: '${{ secrets.LIB_GITHUB_TOKEN }}'
-      - name: Configure GPG Key
-        run: |
-            echo -n "$GPG_PRIVATE_KEY" | gpg --import
+      # - name: Configure GPG Key
+      #   run: |
+      #       echo -n "$GPG_PRIVATE_KEY" | gpg --import
 
       - name: Publish package to Maven Central
         run: mvn clean -X deploy --settings .github/workflows/mvn-settings.xml
         #run: gpg --list-keys
         env:
-          SONATYPE_USERNAME: '${{ secrets.SONATYPE_USERNAME }}'
-          SONATYPE_PASSWORD: '${{ secrets.SONATYPE_PASSWORD }}'
-          GPG_PRIVATE_KEY: '${{ secrets.GPG_PRIVATE_KEY }}'
-          GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE }}'
-          
+          # SONATYPE_USERNAME: '${{ secrets.SONATYPE_USERNAME }}'
+          # SONATYPE_PASSWORD: '${{ secrets.SONATYPE_PASSWORD }}'
+          # GPG_PRIVATE_KEY: '${{ secrets.GPG_PRIVATE_KEY }}'
+          # GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE }}'
+            TEST_PASSPHRASE: '${{ secrets.TEST_PASSPHRASE }}'
