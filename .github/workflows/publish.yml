@@ -16,6 +16,7 @@ jobs:
         with:
           java-version: '17'
           distribution: temurin
+          cache: maven
           
       - name: Publish Package - lib-hl7v2-nist
         run: mvn -B package
