@@ -21,11 +21,11 @@ jobs:
       - name: Publish Package - lib-hl7v2-nist
         run: mvn -B package
 
-      - name: Publish package to github Repo
-        run: mvn clean deploy --settings .github/workflows/mvn-settings.xml
-        env:
-          LIB_GITHUB_ACTOR: '${{ secrets.LIB_GITHUB_ACTOR }}'
-          LIB_GITHUB_TOKEN: '${{ secrets.LIB_GITHUB_TOKEN }}'
+      # - name: Publish package to github Repo
+      #   run: mvn clean deploy --settings .github/workflows/mvn-settings.xml
+      #   env:
+      #     LIB_GITHUB_ACTOR: '${{ secrets.LIB_GITHUB_ACTOR }}'
+      #     LIB_GITHUB_TOKEN: '${{ secrets.LIB_GITHUB_TOKEN }}'
 
       - name: Publish package to Maven Central
         run: mvn clean -X deploy --settings .github/workflows/mvn-settings.xml

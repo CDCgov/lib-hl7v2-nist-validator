@@ -1,10 +1,10 @@
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0">
 <servers>
-    <server>
+    <!--<server>
       <id>github</id>
       <username>${env.LIB_GITHUB_ACTOR}</username>
       <password>${env.LIB_GITHUB_TOKEN}</password>
-    </server>
+    </server>-->
     <server>
       <id>central</id>
       <username>${env.SONATYPE_USERNAME}</username>
