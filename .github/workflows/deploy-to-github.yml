@@ -26,6 +26,9 @@ jobs:
       #   env:
       #     LIB_GITHUB_ACTOR: '${{ secrets.LIB_GITHUB_ACTOR }}'
       #     LIB_GITHUB_TOKEN: '${{ secrets.LIB_GITHUB_TOKEN }}'
+      - name: Configure GPG Key
+        run: |
+            echo -n "$GPG_PRIVATE_KEY" | base64 --decode | gpg --import --passphrase $GPG_PASSPHRASE
 
       - name: Publish package to Maven Central
         run: mvn clean -X deploy --settings .github/workflows/mvn-settings.xml
