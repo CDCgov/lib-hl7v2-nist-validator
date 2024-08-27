@@ -16,14 +16,4 @@
       <passphrase>${env.GPG_PASSPHRASE}</passphrase>
     </server>
   </servers>
-  <profiles>
-  <profile>
-    <id>gpg</id>
-    <properties>
-      <gpg.executable>gpg</gpg.executable>
-      <gpg.passphrase>GPG_PASSPHRASE</gpg.passphrase>
-    </properties>
-  </profile>
-</profiles>
-
 </settings>
