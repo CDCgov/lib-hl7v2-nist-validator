@@ -4,12 +4,12 @@
       <id>github</id>
       <username>${env.LIB_GITHUB_ACTOR}</username>
       <password>${env.LIB_GITHUB_TOKEN}</password>
-    </server>-->
+    </server>
     <server>
       <id>central</id>
       <username>${env.SONATYPE_USERNAME}</username>
       <password>${env.SONATYPE_PASSWORD}</password>
-    </server>
+    </server>-->
     <server>
       <id>sign-artifacts</id>
       <privatekey>${env.GPG_PRIVATE_KEY}</privatekey>

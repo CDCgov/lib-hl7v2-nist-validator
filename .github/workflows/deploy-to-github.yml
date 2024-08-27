@@ -28,10 +28,11 @@ jobs:
       #     LIB_GITHUB_TOKEN: '${{ secrets.LIB_GITHUB_TOKEN }}'
 
       - name: Publish package to Maven Central
-        # run: mvn clean -X deploy --settings .github/workflows/mvn-settings.xml
-        run: gpg --list-keys
+        run: mvn clean -X deploy --settings .github/workflows/mvn-settings.xml
+        #run: gpg --list-keys
         env:
           SONATYPE_USERNAME: '${{ secrets.SONATYPE_USERNAME }}'
           SONATYPE_PASSWORD: '${{ secrets.SONATYPE_PASSWORD }}'
-          GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE }}'
           GPG_PRIVATE_KEY: '${{ secrets.GPG_PRIVATE_KEY }}'
+          GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE }}'
+          
