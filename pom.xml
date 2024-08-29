@@ -103,6 +103,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <gpgprivatekey>${env.GPG_PRIVATE_KEY}</gpgprivatekey>
                     <gpgPassphrase>${env.GPG_PASSPHRASE}</gpgPassphrase>
                 </configuration>
             </plugin>
