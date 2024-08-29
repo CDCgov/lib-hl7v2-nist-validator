@@ -102,10 +102,10 @@
                         </goals>
                     </execution>
                 </executions>
-                <!--<configuration>
+                <configuration>
                     <gpgprivatekey>${env.GPG_PRIVATE_KEY}</gpgprivatekey>
                     <gpgPassphrase>${env.GPG_PASSPHRASE}</gpgPassphrase>
-                </configuration>-->
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.sonatype.central</groupId>
