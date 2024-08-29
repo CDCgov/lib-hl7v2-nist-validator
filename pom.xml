@@ -108,10 +108,10 @@
                     <argument>loopback</argument>
                     </gpgArguments>
                 </configuration>
-                <configuration>
+                <!--<configuration>
                     <gpgprivatekey>GPG_PRIVATE_KEY</gpgprivatekey>
                     <gpgPassphrase>GPG_PASSPHRASE</gpgPassphrase>
-                </configuration>
+                </configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.sonatype.central</groupId>
