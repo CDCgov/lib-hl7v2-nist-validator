@@ -23,8 +23,6 @@ jobs:
      
       echo "$GPG_PRIVATE_KEY" | gpg --batch --no-tty --import
 
-      gpg --batch --yes --sign file.txt
-
       gpg --list-secret-keys
 
      env:
