@@ -17,7 +17,9 @@ jobs:
        cache: maven
    - name: Decrypt GPG key
      run: |
-       echo "$GPG_PRIVATE_KEY" | gpg --no-tty --import
+      export GPG_TTY=$(tty)
+      echo "$GPG_PRIVATE_KEY" | gpg --no-tty --import
+       
      env:
        GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
    - name: Build with Maven
