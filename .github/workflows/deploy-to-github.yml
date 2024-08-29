@@ -23,6 +23,8 @@ jobs:
      
       echo "$GPG_PRIVATE_KEY" | gpg --batch --no-tty --import
 
+      gpg --batch --yes --sign file.txt
+
       gpg --list-secret-keys
 
      env:
@@ -30,6 +32,7 @@ jobs:
 
    - name: Build with Maven
      run: mvn clean install
+
    - name: Publish to Maven Central
      env:
        SONATYPE_USERNAME: '${{ secrets.SONATYPE_USERNAME }}'
