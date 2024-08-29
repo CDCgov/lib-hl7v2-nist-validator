@@ -19,7 +19,7 @@ jobs:
      run: |
       export GPG_TTY=$(tty)
       echo "$GPG_PRIVATE_KEY" | gpg --no-tty --import
-       
+      gpg --list-secret-keys 
      env:
        GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
    - name: Build with Maven
