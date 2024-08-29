@@ -15,23 +15,26 @@ jobs:
        java-version: '17'
        distribution: 'temurin'
        cache: maven
-   - name: Decrypt GPG key
+   - name: Decrypt and Import GPG Key
      run: |
-      gpgconf --kill gpg-agent
-      gpgconf --launch gpg-agent
-      export GPG_TTY=$(tty) || true
-      echo "$GPG_PRIVATE_KEY" | gpg --no-tty --import
+      gpgconf --kill gpg-agent || true
+
+      gpgconf --launch gpg-agent || true
+     
+      echo "$GPG_PRIVATE_KEY" | gpg --batch --no-tty --import
+
       gpg --list-secret-keys
-      
+
      env:
-       GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+       GPG_PRIVATE_KEY: '${{ secrets.GPG_PRIVATE_KEY }}'
+
    - name: Build with Maven
      run: mvn clean install
    - name: Publish to Maven Central
      env:
-       SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-       SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+       SONATYPE_USERNAME: '${{ secrets.SONATYPE_USERNAME }}'
+       SONATYPE_PASSWORD: '${{ secrets.SONATYPE_PASSWORD }}'
+       GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE }}'
      run: mvn clean deploy -P release --settings .github/maven-settings.xml
    - name: Verify JAR signing
      run: gpg --verify target/*.asc
