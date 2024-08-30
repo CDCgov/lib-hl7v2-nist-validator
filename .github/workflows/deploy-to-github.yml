@@ -34,6 +34,6 @@ jobs:
        SONATYPE_USERNAME: '${{ secrets.SONATYPE_USERNAME }}'
        SONATYPE_PASSWORD: '${{ secrets.SONATYPE_PASSWORD }}'
        GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE }}'
-     run: mvn -B clean deploy --settings .github/mvn-settings.xml
+     run: mvn -B clean deploy --settings .github/workflows/mvn-settings.xml
   #  - name: Verify JAR signing
   #    run: gpg --verify target/*.asc
