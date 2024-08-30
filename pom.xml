@@ -4,7 +4,7 @@
     <artifactId>lib-hl7v2-nist-validator</artifactId>
     <name>lib-hl7v2-nist-validator</name>
     <description>Library wrapper around NIST HL7v2 Validator for validation of HL7 v2.x messages.</description>
-    <version>1.3.6</version>
+    <version>1.3.7</version>
     <packaging>jar</packaging>
     <url>https://github.com/CDCgov/lib-hl7v2-nist-validator</url>
     <licenses>
@@ -33,18 +33,10 @@
         <url>https://github.com/CDCgov/lib-hl7v2-nist-validator/tree/main</url>
     </scm>
     <distributionManagement>
-        <!--<repository>
+        <repository>
             <id>github</id>
             <url>https://maven.pkg.github.com/cdcgov/lib-hl7v2-nist-validator</url>
         </repository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>-->
     </distributionManagement>
 
     <properties>
@@ -102,12 +94,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <!--<configuration>
-                    <gpgArguments>
-                    <argument>pinentry-mode</argument>
-                    <argument>loopback</argument>                   
-                    </gpgArguments>
-                </configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.sonatype.central</groupId>
