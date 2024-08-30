@@ -27,7 +27,7 @@ jobs:
 
      env:
        GPG_PRIVATE_KEY: '${{ secrets.GPG_PRIVATE_KEY }}'
-
+       GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE }}'
    - name: Build with Maven
      run: mvn clean install
 
@@ -35,7 +35,7 @@ jobs:
      env:
        SONATYPE_USERNAME: '${{ secrets.SONATYPE_USERNAME }}'
        SONATYPE_PASSWORD: '${{ secrets.SONATYPE_PASSWORD }}'
-       GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE }}'
+       #GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE }}'
      run: mvn clean deploy -P release --settings .github/maven-settings.xml
    - name: Verify JAR signing
      run: gpg --verify target/*.asc
