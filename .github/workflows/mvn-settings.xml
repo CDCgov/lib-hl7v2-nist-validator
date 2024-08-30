@@ -12,10 +12,5 @@ http://maven.apache.org/xsd/settings-1.0.0.xsd">
       <id>gpg.passphrase</id>
       <passphrase>${env.GPG_PASSPHRASE}</passphrase>
     </server>
-    <server>
-      <id>github</id>
-      <username>${env.LIB_GITHUB_ACTOR}</username>
-      <password>${env.LIB_GITHUB_TOKEN}</password>
-    </server>
 </servers>
 </settings>

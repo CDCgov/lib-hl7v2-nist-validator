@@ -33,10 +33,10 @@
         <url>https://github.com/CDCgov/lib-hl7v2-nist-validator/tree/main</url>
     </scm>
     <distributionManagement>
-        <repository>
+        <!--<repository>
             <id>github</id>
             <url>https://maven.pkg.github.com/cdcgov/lib-hl7v2-nist-validator</url>
-        </repository>
+        </repository>-->
     </distributionManagement>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
