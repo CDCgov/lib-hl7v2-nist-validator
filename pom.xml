@@ -36,7 +36,7 @@
         <!--<repository>
             <id>github</id>
             <url>https://maven.pkg.github.com/cdcgov/lib-hl7v2-nist-validator</url>
-        </repository>-->
+        </repository>
         <repository>
             <id>ossrh</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
@@ -44,7 +44,7 @@
         <snapshotRepository>
             <id>ossrh</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
+        </snapshotRepository>-->
     </distributionManagement>
 
     <properties>
@@ -102,16 +102,11 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <gpgArguments>
-                    <argument>--pinentry-mode</argument>
-                    <argument>loopback</argument>
-                    <!--<argument>no-tty</argument>-->
-                    </gpgArguments>
-                </configuration>
                 <!--<configuration>
-                    <gpgprivatekey>GPG_PRIVATE_KEY</gpgprivatekey>
-                    <gpgPassphrase>GPG_PASSPHRASE</gpgPassphrase>
+                    <gpgArguments>
+                    <argument>pinentry-mode</argument>
+                    <argument>loopback</argument>                   
+                    </gpgArguments>
                 </configuration>-->
             </plugin>
             <plugin>
