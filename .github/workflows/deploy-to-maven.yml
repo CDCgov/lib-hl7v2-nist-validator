@@ -1,8 +1,6 @@
 name: Java/maven CI/CD Pipeline
 on:
   push:
-    branches:
-         - main
     tags:
        - 'v*.*.*'  # Adjust the tag pattern to match your versioning scheme
   release:
