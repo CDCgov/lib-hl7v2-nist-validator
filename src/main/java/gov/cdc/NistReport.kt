@@ -2,15 +2,22 @@ package gov.cdc
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.GsonBuilder
 import com.google.gson.annotations.SerializedName
 import gov.nist.validation.report.Entry
-import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 
 //JsonProperty is used for jackson
 //SerialiedName is used for Gson.
 @JsonInclude(JsonInclude.Include.NON_NULL)
 class NistReport {
+    companion object {
+        val nistGson = GsonBuilder().disableHtmlEscaping().serializeNulls().registerTypeAdapter(
+            gov.nist.validation.report.Entry::class.java,
+            EntryInterfaceAdapter<Entry>()
+        ).setExclusionStrategies(GsonExclusionStrategy()
+        ).create()
+    }
     val entries: Entries = Entries()
     @JsonProperty("error-count")
     @SerializedName("error-count")
@@ -39,10 +46,14 @@ class NistReport {
 }
 
 data class SummaryCount(
+    @JsonProperty("structure")
+    @SerializedName("structure")
     val structure: Int  ,
     @JsonProperty  ("value-set")
     @SerializedName("value-set")
     val valueset: Int,
+    @JsonProperty("content")
+    @SerializedName("content")
     val content: Int
 )
 
@@ -53,14 +64,6 @@ class Entries {
     @SerializedName("value-set")
     var valueset  = ArrayList<Entry>()
 }
-//
-//@JsonIgnoreProperties(ignoreUnknown = true)
-//class Entry {
-//     var line = 0
-//     var column = 0
-//     var path: String? = null
-//     var description: String? = null
-//     var category: String? = null
-//     var classification: String? = null
-//
-//}
+
+
+
