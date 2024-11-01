@@ -1,0 +1,39 @@
+{
+  "entries": {
+    "structure": [
+      {
+        "line": 1,
+        "column": 1,
+        "path": "PATIENT_RESULT[1]",
+        "description": "The required Group PATIENT_RESULT (PATIENT_RESULT) is missing",
+        "category": "Usage",
+        "classification": "Error",
+        "stackTrace": null,
+        "metaData": null
+      },
+      {
+        "line": 1,
+        "column": 1,
+        "path": "SFT[1]",
+        "description": "The required Segment SFT (Software Segment) is missing",
+        "category": "Usage",
+        "classification": "Error",
+        "stackTrace": null,
+        "metaData": null
+      }
+    ],
+    "content": [],
+    "value-set": []
+  },
+  "error-count": {
+    "structure": 2,
+    "value-set": 0,
+    "content": 0
+  },
+  "warning-count": {
+    "structure": 0,
+    "value-set": 0,
+    "content": 0
+  },
+  "status": "STRUCTURE_ERRORS"
+}
