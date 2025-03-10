@@ -4,7 +4,7 @@
     <artifactId>lib-hl7v2-nist-validator</artifactId>
     <name>lib-hl7v2-nist-validator</name>
     <description>Library wrapper around NIST HL7v2 Validator for validation of HL7 v2.x messages.</description>
-    <version>1.3.10</version>
+    <version>1.3.11</version>
     <packaging>jar</packaging>
     <url>https://github.com/CDCgov/lib-hl7v2-nist-validator</url>
     <licenses>
@@ -44,7 +44,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <kotlin.version>1.9.0</kotlin.version>
-        <nist.version>1.6.3</nist.version>
+        <nist.version>1.6.10</nist.version>
     </properties>
     <repositories>
     <repository>
