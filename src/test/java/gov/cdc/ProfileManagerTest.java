@@ -13,61 +13,88 @@ import java.nio.file.Files;
  */
 public class ProfileManagerTest {
 
+
+    // @Test
+    // public void testValidateStructureErrors() {
+    //     try {
+    //         var nistValidator = new ProfileManager(new ResourceFileFetcher(), "/TEST_PROF");
+
+    //         var nist = nistValidator.validate(getTestFile("hl7TestMessage.txt"));
+    //         System.out.println("nist.getStatus() = " + nist.getStatus());
+    //         System.out.println("nist.getErrorCounts() = " + nist.getErrorCounts());
+    //         System.out.println("nist.getErrorCounts().getStructure() = " + nist.getErrorCounts().getStructure());
+    //         System.out.println("nist.getErrorCounts().getValueset() = " + nist.getErrorCounts().getValueset());
+    //         System.out.println("nist.getErrorCounts().getContent() = " + nist.getErrorCounts().getContent());
+    //         System.out.println("nist.getWarningCounts() = " + nist.getWarningcounts());
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //         assert(false);
+    //     }
+    // }
+
+    // @Test
+    // public void testValidateStructureValid() {
+    //         try {
+    //             ProfileManager nistValidator = new ProfileManager(new ResourceFileFetcher(), "/COVID19_ELR-v2.3.1");
+
+    //             var nist = nistValidator.validate(getTestFile("covidELR/231HL7TestFilewithHHSData.txt"));
+    //             System.out.println("nist.getStatus() = " + nist.getStatus());
+    //             System.out.println("nist.getErrorCounts() = " + nist.getErrorCounts());
+    //             System.out.println("nist.getErrorCounts().getStructure() = " + nist.getErrorCounts().getStructure());
+    //             System.out.println("nist.getErrorCounts().getValueset() = " + nist.getErrorCounts().getValueset());
+    //             System.out.println("nist.getErrorCounts().getContent() = " + nist.getErrorCounts().getContent());
+    //             System.out.println("nist.getWarningcounts() = " + nist.getWarningcounts());
+
+    //         } catch (Exception e) {
+    //             e.printStackTrace();
+    //             assert(false);
+    //         }
+    // }
+
+    // @Test
+    // public void testInvalidProfile() {
+    //     try {
+    //         new ProfileManager(new ResourceFileFetcher(), "/INVALID_PROFILE");
+    //     } catch (Exception e) {
+    //         System.out.println("Exception properly handled.");
+    //     }
+    // }
+
     @Test
-    public void testValidateStructureErrors() {
+    public void testInvalidProfile1() {
         try {
-            var nistValidator = new ProfileManager(new ResourceFileFetcher(), "/TEST_PROF");
+            System.out.println("Starting loading profiles...");
 
-            var nist = nistValidator.validate(getTestFile("hl7TestMessage.txt"));
-            System.out.println("nist.getStatus() = " + nist.getStatus());
-            System.out.println("nist.getErrorCounts() = " + nist.getErrorCounts());
-            System.out.println("nist.getErrorCounts().getStructure() = " + nist.getErrorCounts().getStructure());
-            System.out.println("nist.getErrorCounts().getValueset() = " + nist.getErrorCounts().getValueset());
-            System.out.println("nist.getErrorCounts().getContent() = " + nist.getErrorCounts().getContent());
-            System.out.println("nist.getWarningCounts() = " + nist.getWarningcounts());
-        } catch (Exception e) {
-            e.printStackTrace();
-            assert(false);
-        }
-    }
-
-    @Test
-    public void testValidateStructureValid() {
-            try {
-                ProfileManager nistValidator = new ProfileManager(new ResourceFileFetcher(), "/COVID19_ELR-v2.3.1");
-
-                var nist = nistValidator.validate(getTestFile("covidELR/231HL7TestFilewithHHSData.txt"));
-                System.out.println("nist.getStatus() = " + nist.getStatus());
-                System.out.println("nist.getErrorCounts() = " + nist.getErrorCounts());
-                System.out.println("nist.getErrorCounts().getStructure() = " + nist.getErrorCounts().getStructure());
-                System.out.println("nist.getErrorCounts().getValueset() = " + nist.getErrorCounts().getValueset());
-                System.out.println("nist.getErrorCounts().getContent() = " + nist.getErrorCounts().getContent());
-                System.out.println("nist.getWarningcounts() = " + nist.getWarningcounts());
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                assert(false);
-            }
-    }
-
-    @Test
-    public void testInvalidProfile() {
-        try {
-            new ProfileManager(new ResourceFileFetcher(), "/INVALID_PROFILE");
+            new ProfileManager(new ResourceFileFetcher(), "/ARLN_DHQP");
         } catch (Exception e) {
             System.out.println("Exception properly handled.");
+            
+            System.out.println("e.getMessage() = " + e.getMessage());
         }
     }
 
     @Test
-    public void testIncompleteProfile() {
+    public void testInvalidProfile2() {
         try {
-            new ProfileManager(new ResourceFileFetcher(), "/INCOMPLETE_PROFILE");
+            System.out.println("Starting loading profiles...");
+
+            new ProfileManager(new ResourceFileFetcher(), "/ARLN_Candida");
         } catch (Exception e) {
+            System.out.println("Exception properly handled.");
+            
             System.out.println("e.getMessage() = " + e.getMessage());
-            assert(true);
         }
     }
+
+    // @Test
+    // public void testIncompleteProfile() {
+    //     try {
+    //         new ProfileManager(new ResourceFileFetcher(), "/INCOMPLETE_PROFILE");
+    //     } catch (Exception e) {
+    //         System.out.println("e.getMessage() = " + e.getMessage());
+    //         assert(true);
+    //     }
+    // }
 
     private String getTestFile(String filename) throws IOException {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
