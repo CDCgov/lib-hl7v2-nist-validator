@@ -20,7 +20,6 @@ class ResourceFileFetcher: ProfileFetcher {
         return getResourceFile(file, req)
     }
 
-
     private fun getResourceFile(fileName: String, req:Boolean): InputStream? {
         try {
             return this::class.java.getResourceAsStream(fileName)!!
@@ -29,5 +28,6 @@ class ResourceFileFetcher: ProfileFetcher {
                 throw InvalidFileException("Unable to load profile for $fileName")
             else return null
         }
-    }
-}
+    }// .getResourceFile
+
+}// .ProfileFetcher

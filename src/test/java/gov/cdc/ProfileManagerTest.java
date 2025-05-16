@@ -24,7 +24,9 @@ public class ProfileManagerTest {
             System.out.println("nist.getErrorCounts().getStructure() = " + nist.getErrorCounts().getStructure());
             System.out.println("nist.getErrorCounts().getValueset() = " + nist.getErrorCounts().getValueset());
             System.out.println("nist.getErrorCounts().getContent() = " + nist.getErrorCounts().getContent());
-            System.out.println("nist.getWarningCounts() = " + nist.getWarningcounts());
+            System.out.println("nist.getWarningCounts() = " + nist.getWarningCounts());
+            System.out.println("nist.getAlertCounts() = " + nist.getAlertCounts());
+            System.out.println("nist.getInformationalCounts() = " + nist.getInformationalCounts());
         } catch (Exception e) {
             e.printStackTrace();
             assert(false);
@@ -42,7 +44,9 @@ public class ProfileManagerTest {
                 System.out.println("nist.getErrorCounts().getStructure() = " + nist.getErrorCounts().getStructure());
                 System.out.println("nist.getErrorCounts().getValueset() = " + nist.getErrorCounts().getValueset());
                 System.out.println("nist.getErrorCounts().getContent() = " + nist.getErrorCounts().getContent());
-                System.out.println("nist.getWarningcounts() = " + nist.getWarningcounts());
+                System.out.println("nist.getWarningcounts() = " + nist.getWarningCounts());
+                System.out.println("nist.getAlertCounts() = " + nist.getAlertCounts());
+                System.out.println("nist.getInformationalCounts() = " + nist.getInformationalCounts());
 
             } catch (Exception e) {
                 e.printStackTrace();
