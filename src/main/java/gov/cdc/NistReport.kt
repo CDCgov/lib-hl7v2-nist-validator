@@ -11,39 +11,57 @@ import java.util.concurrent.atomic.AtomicInteger
 //SerialiedName is used for Gson.
 @JsonInclude(JsonInclude.Include.NON_NULL)
 class NistReport {
+
     companion object {
         val nistGson = GsonBuilder().disableHtmlEscaping().serializeNulls().registerTypeAdapter(
             gov.nist.validation.report.Entry::class.java,
             EntryInterfaceAdapter<Entry>()
         ).setExclusionStrategies(GsonExclusionStrategy()
         ).create()
-    }
+    }// .companion
+
+    var status:String? = null
     val entries: Entries = Entries()
+
+    // Errors
     @JsonProperty("error-count")
     @SerializedName("error-count")
     var errorCounts: SummaryCount? = null
+    // Warnings
     @JsonProperty  ("warning-count")
     @SerializedName("warning-count")
-    var warningcounts: SummaryCount?  = null
-    var status:String? = null
+    var warningCounts: SummaryCount?  = null
+    // Alert 
+    @JsonProperty  ("alert-count")
+    @SerializedName("alert-count")
+    var alertCounts: SummaryCount?  = null
+    // Informational
+    @JsonProperty  ("informational-count")
+    @SerializedName("informational-count")
+    var informationalCounts: SummaryCount?  = null
 
     fun transferErrorCounts(map: Map<*, AtomicInteger>?) {
         this.errorCounts = transferCounts(map)
-    }
+    }// .transferErrorCounts
     fun transferWarningCounts(map: Map<*,AtomicInteger>?) {
-        this.warningcounts = transferCounts(map)
-    }
+        this.warningCounts = transferCounts(map)
+    }// .transferWarningCounts
+    fun transferAlertCounts(map: Map<*,AtomicInteger>?) {
+        this.alertCounts = transferCounts(map)
+    }// .transferAlertCounts
+    fun transferInformationalCounts(map: Map<*,AtomicInteger>?) {
+        this.informationalCounts = transferCounts(map)
+    }// .transferInformationalCounts
 
     private fun transferCounts(map: Map<*, AtomicInteger>?): SummaryCount {
         return SummaryCount(
-       map?.get("structure")?.get() ?:0,
+            map?.get("structure")?.get() ?:0,
             map?.get("value-set")?.get() ?:0,
-       map?.get("content")?.get() ?:0
-        )
-    }
+            map?.get("content")?.get() ?:0
+        )// .return
+    }// .transferCounts
 
-
-}
+}//.NistReport
 
 data class SummaryCount(
     @JsonProperty("structure")
@@ -55,7 +73,7 @@ data class SummaryCount(
     @JsonProperty("content")
     @SerializedName("content")
     val content: Int
-)
+)// .SummaryCount
 
 class Entries {
     var structure = ArrayList<Entry>()
@@ -63,7 +81,5 @@ class Entries {
     @JsonProperty  ("value-set")
     @SerializedName("value-set")
     var valueset  = ArrayList<Entry>()
-}
-
-
+}// .Entries
 

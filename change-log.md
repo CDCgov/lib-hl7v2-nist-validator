@@ -1,5 +1,11 @@
 # Change Log - lib-hl7v2-nist-validator
 
+## v 1.3.12- 2025/05/16
+
+- Added additional categories to the validation report: Alert and Informational
+- Added github workflow to run unit tests on PR to main branch
+- Updates application.conf to latest used 
+
 ## v 1.3.11- 2025/03/10
 
 - Update HL7v2 NIST dependency libraries to version 1.6.10

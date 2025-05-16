@@ -30,14 +30,17 @@ class ProfileManager(profileFetcher: ProfileFetcher, val profile: String) {
         private const val VALID_MESSAGE_STATUS = "VALID_MESSAGE"
         private const val STRUCTURE_ERRORS_STATUS = "STRUCTURE_ERRORS"
         private const val CONTENT_ERRORS_STATUS = "CONTENT_ERRORS"
+        
         private const val ERROR_CLASSIFICATION = "Error"
         private const val WARNING_CLASSIFICATION = "Warning"
+        private const val ALERT_CLASSIFICATION = "Alert"
+        private const val INFO_CLASSIFICATION = "Informational"
 
         private const val VALUE_SET_ENTRIES = "value-set"
         private const val STRUCTURE_ENTRIES = "structure"
         private const val CONTENT_ENTRIES = "content"
 
-    }
+    }// .companion
 
     private val validator: SyncHL7Validator
 
@@ -46,7 +49,7 @@ class ProfileManager(profileFetcher: ProfileFetcher, val profile: String) {
         logger.info("AUDIT:: Loading profile $profile")
 //        validator = loadOldProfiles(profileFetcher)
         validator = loadNewProfiles(profileFetcher)
-    }
+    }// .init
 
     private fun loadNewProfiles(profileFetcher: ProfileFetcher): SyncHL7Validator {
         try {
@@ -82,7 +85,7 @@ class ProfileManager(profileFetcher: ProfileFetcher, val profile: String) {
             throw  InvalidFileException("Unable to parse profile file with error: ${e.message}")
 
         }
-    }
+    }// .loadNewProfiles
 
     private fun loadOldProfiles(profileFetcher: ProfileFetcher): SyncHL7Validator {
         try {
@@ -120,7 +123,7 @@ class ProfileManager(profileFetcher: ProfileFetcher, val profile: String) {
             throw  InvalidFileException("Unable to parse profile file with error: ${e.message}")
 
         }
-    }
+    }// .loadOldProfiles
 
 
     @Throws(java.lang.Exception::class)
@@ -136,22 +139,31 @@ class ProfileManager(profileFetcher: ProfileFetcher, val profile: String) {
         val nist = NistReport()
         val errCount: MutableMap<String, AtomicInteger> = mutableMapOf()
         val warCount: MutableMap<String, AtomicInteger> = mutableMapOf()
+        val alertCount: MutableMap<String, AtomicInteger> = mutableMapOf()
+        val infoCount: MutableMap<String, AtomicInteger> = mutableMapOf()
+
         val valMap = report.entries
         val filteredMap: MutableMap<String, List<Entry>> = mutableMapOf()
 
         valMap.forEach { (k: String, v: List<Entry>) ->
             errCount[k] = AtomicInteger()
             warCount[k] = AtomicInteger()
+            alertCount[k] = AtomicInteger()
+            infoCount[k] = AtomicInteger()
             val filteredContent: MutableList<Entry> = mutableListOf()
 
             v.forEach(Consumer { entry: Entry ->
-                if (entry.classification == ERROR_CLASSIFICATION || entry.classification == WARNING_CLASSIFICATION) {
+                if (entry.classification == ERROR_CLASSIFICATION || entry.classification == WARNING_CLASSIFICATION || entry.classification == ALERT_CLASSIFICATION || entry.classification == INFO_CLASSIFICATION) {
                     filteredContent.add(entry)
                     if (entry.classification == WARNING_CLASSIFICATION)
                         warCount[k]?.getAndIncrement()
                     if (entry.classification == ERROR_CLASSIFICATION)
                         errCount[k]?.getAndIncrement()
-                }
+                    if (entry.classification == ALERT_CLASSIFICATION)
+                        alertCount[k]?.getAndIncrement()
+                    if (entry.classification == INFO_CLASSIFICATION)
+                        infoCount[k]?.getAndIncrement()
+                }// .if
             })
             filteredMap[k] = filteredContent
         }
@@ -167,7 +179,10 @@ class ProfileManager(profileFetcher: ProfileFetcher, val profile: String) {
         nist.entries.valueset = (filteredMap[VALUE_SET_ENTRIES] ?: ArrayList()) as java.util.ArrayList<Entry>
         nist.transferErrorCounts(errCount)
         nist.transferWarningCounts(warCount)
+        nist.transferAlertCounts(alertCount)
+        nist.transferInformationalCounts(infoCount)
         nist.status = status
         return nist
-    }
-}
+    }// .filterAndConvert
+    
+}// .ProfileManager
