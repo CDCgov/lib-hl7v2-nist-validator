@@ -1,5 +1,10 @@
 # Change Log - lib-hl7v2-nist-validator
 
+## v 1.3.13- 2025/08/22
+
+- Added exception for profile manager, filter and convert func  
+- Update profile manager, filter and convert, removed forced assertion
+
 ## v 1.3.12- 2025/05/16
 
 - Added additional categories to the validation report: Alert and Informational

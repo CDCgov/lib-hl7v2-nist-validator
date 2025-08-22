@@ -133,56 +133,63 @@ class ProfileManager(profileFetcher: ProfileFetcher, val profile: String) {
         val report = validator.check(hl7Message, msId)
 
         return filterAndConvert(report)
-    }
+    }// .validate
 
     private fun filterAndConvert(report: Report): NistReport {
-        val nist = NistReport()
-        val errCount: MutableMap<String, AtomicInteger> = mutableMapOf()
-        val warCount: MutableMap<String, AtomicInteger> = mutableMapOf()
-        val alertCount: MutableMap<String, AtomicInteger> = mutableMapOf()
-        val infoCount: MutableMap<String, AtomicInteger> = mutableMapOf()
+        try {
+            val nist = NistReport()
+            val errCount: MutableMap<String, AtomicInteger> = mutableMapOf()
+            val warCount: MutableMap<String, AtomicInteger> = mutableMapOf()
+            val alertCount: MutableMap<String, AtomicInteger> = mutableMapOf()
+            val infoCount: MutableMap<String, AtomicInteger> = mutableMapOf()
 
-        val valMap = report.entries
-        val filteredMap: MutableMap<String, List<Entry>> = mutableMapOf()
+            val valMap = report.entries
+            val filteredMap: MutableMap<String, List<Entry>> = mutableMapOf()
 
-        valMap.forEach { (k: String, v: List<Entry>) ->
-            errCount[k] = AtomicInteger()
-            warCount[k] = AtomicInteger()
-            alertCount[k] = AtomicInteger()
-            infoCount[k] = AtomicInteger()
-            val filteredContent: MutableList<Entry> = mutableListOf()
+            valMap.forEach { (k: String, v: List<Entry>) ->
+                errCount[k] = AtomicInteger()
+                warCount[k] = AtomicInteger()
+                alertCount[k] = AtomicInteger()
+                infoCount[k] = AtomicInteger()
+                val filteredContent: MutableList<Entry> = mutableListOf()
 
-            v.forEach(Consumer { entry: Entry ->
-                if (entry.classification == ERROR_CLASSIFICATION || entry.classification == WARNING_CLASSIFICATION || entry.classification == ALERT_CLASSIFICATION || entry.classification == INFO_CLASSIFICATION) {
-                    filteredContent.add(entry)
-                    if (entry.classification == WARNING_CLASSIFICATION)
-                        warCount[k]?.getAndIncrement()
-                    if (entry.classification == ERROR_CLASSIFICATION)
-                        errCount[k]?.getAndIncrement()
-                    if (entry.classification == ALERT_CLASSIFICATION)
-                        alertCount[k]?.getAndIncrement()
-                    if (entry.classification == INFO_CLASSIFICATION)
-                        infoCount[k]?.getAndIncrement()
-                }// .if
-            })
-            filteredMap[k] = filteredContent
-        }
-        var status = VALID_MESSAGE_STATUS
-        if (errCount[STRUCTURE_ENTRIES]!!.get() > 0) {
-            status = STRUCTURE_ERRORS_STATUS
-        } else if (errCount[CONTENT_ENTRIES]!!.get() > 0 || errCount[VALUE_SET_ENTRIES]!!.get() > 0) {
-            status = CONTENT_ERRORS_STATUS
-        }
+                v.forEach(Consumer { entry: Entry ->
+                    if (entry.classification == ERROR_CLASSIFICATION || entry.classification == WARNING_CLASSIFICATION || entry.classification == ALERT_CLASSIFICATION || entry.classification == INFO_CLASSIFICATION) {
+                        filteredContent.add(entry)
+                        if (entry.classification == WARNING_CLASSIFICATION)
+                            warCount[k]?.getAndIncrement()
+                        if (entry.classification == ERROR_CLASSIFICATION)
+                            errCount[k]?.getAndIncrement()
+                        if (entry.classification == ALERT_CLASSIFICATION)
+                            alertCount[k]?.getAndIncrement()
+                        if (entry.classification == INFO_CLASSIFICATION)
+                            infoCount[k]?.getAndIncrement()
+                    } // .if
+                })
+                filteredMap[k] = filteredContent
+            }
+            var status = VALID_MESSAGE_STATUS
+            if (errCount[STRUCTURE_ENTRIES]?.get() ?: 0 > 0) {
+                status = STRUCTURE_ERRORS_STATUS
+            } else if (errCount[CONTENT_ENTRIES]?.get() ?: 0 > 0 || errCount[VALUE_SET_ENTRIES]?.get() ?: 0 > 0) {
+                status = CONTENT_ERRORS_STATUS
+            }
 
-        nist.entries.structure = (filteredMap[STRUCTURE_ENTRIES] ?: ArrayList()) as java.util.ArrayList<Entry>
-        nist.entries.content = (filteredMap[CONTENT_ENTRIES] ?: ArrayList ()) as java.util.ArrayList<Entry>
-        nist.entries.valueset = (filteredMap[VALUE_SET_ENTRIES] ?: ArrayList()) as java.util.ArrayList<Entry>
-        nist.transferErrorCounts(errCount)
-        nist.transferWarningCounts(warCount)
-        nist.transferAlertCounts(alertCount)
-        nist.transferInformationalCounts(infoCount)
-        nist.status = status
-        return nist
+            nist.entries.structure = (filteredMap[STRUCTURE_ENTRIES] ?: ArrayList()) as java.util.ArrayList<Entry>
+            nist.entries.content = (filteredMap[CONTENT_ENTRIES] ?: ArrayList()) as java.util.ArrayList<Entry>
+            nist.entries.valueset = (filteredMap[VALUE_SET_ENTRIES] ?: ArrayList()) as java.util.ArrayList<Entry>
+            nist.transferErrorCounts(errCount)
+            nist.transferWarningCounts(warCount)
+            nist.transferAlertCounts(alertCount)
+            nist.transferInformationalCounts(infoCount)
+            nist.status = status
+            return nist
+
+        } catch (e: Exception) {
+            logger.warning("UNABLE TO filterAndConvert Report: {e.message}")
+
+            throw RuntimeException("An unexpected error occurred while processing the report", e)
+        }// .catch
     }// .filterAndConvert
     
 }// .ProfileManager
