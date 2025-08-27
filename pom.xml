@@ -44,7 +44,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <kotlin.version>1.9.0</kotlin.version>
-        <nist.version>1.6.10</nist.version>
+        <nist.version>1.7.3</nist.version>
     </properties>
     <repositories>
     <repository>
