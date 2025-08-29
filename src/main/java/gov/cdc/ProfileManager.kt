@@ -14,20 +14,20 @@ import java.util.concurrent.atomic.AtomicInteger
 import java.util.function.Consumer
 import java.util.logging.Logger
 
-import hl7.v2.validation.vs.external.client.ExternalValueSetClient
+// import hl7.v2.validation.vs.external.client.ExternalValueSetClient
 
-import org.apache.http.client.config.RequestConfig
-import org.apache.http.impl.client.CloseableHttpClient
-import org.apache.http.impl.client.HttpClients
-import org.apache.http.protocol.HttpContext
-import org.apache.http.HttpRequestInterceptor
+// import org.apache.http.client.config.RequestConfig
+// import org.apache.http.impl.client.CloseableHttpClient
+// import org.apache.http.impl.client.HttpClients
+// import org.apache.http.protocol.HttpContext
+// import org.apache.http.HttpRequestInterceptor
 
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory
-import org.apache.http.conn.ssl.TrustAllStrategy
-import org.apache.http.conn.ssl.SSLContextBuilder
-import org.apache.http.conn.ssl.NoopHostnameVerifier
+// import org.apache.http.conn.ssl.SSLConnectionSocketFactory
+// import org.apache.http.conn.ssl.TrustAllStrategy
+// import org.apache.http.conn.ssl.SSLContextBuilder
+// import org.apache.http.conn.ssl.NoopHostnameVerifier
 
-import hl7.v2.validation.vs.factory.impl.java.DefaultValueSetFactory
+// import hl7.v2.validation.vs.factory.impl.java.DefaultValueSetFactory
 
 
 /**
