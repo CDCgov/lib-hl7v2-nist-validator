@@ -4,7 +4,7 @@
     <artifactId>lib-hl7v2-nist-validator</artifactId>
     <name>lib-hl7v2-nist-validator</name>
     <description>Library wrapper around NIST HL7v2 Validator for validation of HL7 v2.x messages.</description>
-    <version>1.3.13</version>
+    <version>1.4.0</version>
     <packaging>jar</packaging>
     <url>https://github.com/CDCgov/lib-hl7v2-nist-validator</url>
     <licenses>
