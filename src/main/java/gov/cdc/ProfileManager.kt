@@ -14,6 +14,21 @@ import java.util.concurrent.atomic.AtomicInteger
 import java.util.function.Consumer
 import java.util.logging.Logger
 
+// import hl7.v2.validation.vs.external.client.ExternalValueSetClient
+
+// import org.apache.http.client.config.RequestConfig
+// import org.apache.http.impl.client.CloseableHttpClient
+// import org.apache.http.impl.client.HttpClients
+// import org.apache.http.protocol.HttpContext
+// import org.apache.http.HttpRequestInterceptor
+
+// import org.apache.http.conn.ssl.SSLConnectionSocketFactory
+// import org.apache.http.conn.ssl.TrustAllStrategy
+// import org.apache.http.conn.ssl.SSLContextBuilder
+// import org.apache.http.conn.ssl.NoopHostnameVerifier
+
+// import hl7.v2.validation.vs.factory.impl.java.DefaultValueSetFactory
+
 
 /**
  *
@@ -67,7 +82,7 @@ class ProfileManager(profileFetcher: ProfileFetcher, val profile: String) {
             valueSetLibraryXML?.let  {ctxBuilder.useValueSetLibrary(valueSetLibraryXML)} // Optional
             valueSetBindingsXML?.let {ctxBuilder.useVsBindings(valueSetBindingsXML)} // Optional
             slicingsXML?.let         {ctxBuilder.useSlicingContext(slicingsXML)} // Optional
-            coConstraintsXML?.let    { ctxBuilder.useCoConstraintsContext(coConstraintsXML)} // Optional
+            coConstraintsXML?.let    {ctxBuilder.useCoConstraintsContext(coConstraintsXML)} // Optional
 
             val context = ctxBuilder.validationContext
             val validator = SyncHL7Validator(context)
@@ -78,53 +93,88 @@ class ProfileManager(profileFetcher: ProfileFetcher, val profile: String) {
             valueSetBindingsXML?.close()
             slicingsXML?.close()
             coConstraintsXML?.close()
+            
             return validator
         } catch (e: Error) {
             logger.warning("UNABLE TO READ PROFILE: $profile with error:\n${e.message}")
-//            e.printStackTrace()
+            // e.printStackTrace()
             throw  InvalidFileException("Unable to parse profile file with error: ${e.message}")
+        } // .catch
+    } // .loadNewProfiles
 
-        }
-    }// .loadNewProfiles
+    // private fun loadOldProfiles(profileFetcher: ProfileFetcher): SyncHL7Validator {
+    //     try {
+    //         // ref: v2-validation release v1.7.3 repo and README
 
-    private fun loadOldProfiles(profileFetcher: ProfileFetcher): SyncHL7Validator {
-        try {
-            val profileXML = profileFetcher.getFileAsInputStream("$profile/PROFILE.xml", true)
-            // The get() at the end will throw an exception if something goes wrong
-            val profileX = XMLDeserializer.deserialize(profileXML).get()
-            // get ConformanceContext
-            val contextXML1 = profileFetcher.getFileAsInputStream("$profile/CONSTRAINTS.xml", false)
-            // The second conformance context XML file
-            val confContexts = mutableListOf(contextXML1)
-            val contextXML2:InputStream? =try {
-                profileFetcher.getFileAsInputStream("$profile/PREDICATES.xml", false)
-            } catch (e: Exception) {
-                logger.fine("No Predicate Available for group $profile. Ignoring Predicate.")
-                //No predicate available... ignore file...
-                null
-            }
-            if (contextXML2 != null)
-                confContexts.add(contextXML2)
-            // The get() at the end will throw an exception if something goes wrong
-            val conformanceContext = DefaultConformanceContext.apply(confContexts.toList()).get()
-            // get ValueSetLibrary
-            val vsLibXML = profileFetcher.getFileAsInputStream("$profile/VALUESETS.xml", false)
-            val valueSetLibrary = ValueSetLibraryImpl.apply(vsLibXML).get()
-            val validator = SyncHL7Validator(profileX, valueSetLibrary, conformanceContext)
-            //Close Resources:
-            profileXML?.close()
-            contextXML1?.close()
-            vsLibXML?.close()
-            contextXML2?.close()
-            return validator
-        } catch (e: Error) {
-            logger.warning("UNABLE TO READ PROFILE: $profile with error:\n${e.message}")
-//            e.printStackTrace()
-            throw  InvalidFileException("Unable to parse profile file with error: ${e.message}")
+    //         val builder = SSLContextBuilder()
+    //         builder.loadTrustMaterial(null, TrustAllStrategy())
 
-        }
-    }// .loadOldProfiles
+    //         val socketFactory = SSLConnectionSocketFactory(
+    //             builder.build(),
+    //             NoopHostnameVerifier.INSTANCE)
 
+    //         val requestConfig: RequestConfig = RequestConfig.custom()
+    //             .setConnectionRequestTimeout(2 * 1000)
+    //             .setConnectTimeout(2 * 1000)
+    //             .setSocketTimeout(2 * 1000)
+    //             .build()
+
+    //         val httpClient: CloseableHttpClient = HttpClients.custom()
+    //             .setDefaultRequestConfig(requestConfig)
+    //             .disableCookieManagement()
+    //             .setSSLSocketFactory(socketFactory)
+    //             .addInterceptorFirst(HttpRequestInterceptor { request, context ->
+    //                 // You can get the binding identifier of the value set being validated against by this call
+    //                 val bindingIdentifier = context.getAttribute(ExternalValueSetClient.HTTP_CONTEXT_VS_BINDING_IDENTIFIER).toString()
+    //                 // You can get the URL of the value set being validated against by this call
+    //                 val valueSetURL = context.getAttribute(ExternalValueSetClient.HTTP_CONTEXT_VS_URL).toString()
+    //                 // You can modify the request as necessary to add extra headers such as API keys ("X-API-KEY" header)
+    //             })
+    //             .build()
+            
+    //         val profileXML = profileFetcher.getFileAsInputStream("$profile/PROFILE.XML", true)
+
+    //         val cacheInstances = false // TODO: ?
+    //         val valueSetLibraryXML = profileFetcher.getFileAsInputStream("$profile/VALUESETS.XML", false)
+            
+    //         val constraintsXML = profileFetcher.getFileAsInputStream("$profile/CONSTRAINTS.XML", false)
+
+    //         val coConstraintsXML = profileFetcher.getFileAsInputStream("$profile/COCONSTRAINTS.XML", false)
+    //         val valueSetBindingsXML = profileFetcher.getFileAsInputStream("$profile/VALUESETBINDINGS.XML", false)
+    //         val slicingsXML = profileFetcher.getFileAsInputStream("$profile/SLICINGS.XML", false)
+
+    //         // Create Validation Context object using builder
+    //         val context = ValidationContextBuilder(profileXML)
+    //             .useConformanceContext(listOf(constraintsXML)) // Optional
+                
+    //             // Use Default ValueSetFactory with value set library XML and HTTP Client
+    //             .useDefaultValueSetFactory(valueSetLibraryXML, httpClient, cacheInstances)
+                
+    //             .useVsBindings(valueSetBindingsXML) // Optional
+    //             .useSlicingContext(slicingsXML) // Optional
+    //             .useCoConstraintsContext(coConstraintsXML) // Optional
+    //             .setFFLegacy0396(true) // Optional (Sets Feature Flag for legacy HL70396 value set values pattern matching behavior)
+    //             .validationContext
+
+    //         // Instantiate the validator
+    //         val validator = SyncHL7Validator(context)
+
+    //         // Close Resources:
+    //         profileXML?.close()
+    //         valueSetLibraryXML ?.close()
+    //         constraintsXML ?.close()
+    //         coConstraintsXML ?.close()
+    //         valueSetBindingsXML ?.close()
+    //         slicingsXML ?.close()
+
+    //         return validator
+    //     } catch (e: Error) {
+    //         logger.warning("UNABLE TO READ PROFILE: $profile with error:\n${e.message}")
+    //         // e.printStackTrace()
+    //         throw  InvalidFileException("Unable to parse profile file with error: ${e.message}")
+
+    //     }// .catch
+    // } // .loadOldProfiles
 
     @Throws(java.lang.Exception::class)
     fun validate(hl7Message: String): NistReport {

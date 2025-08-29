@@ -1,5 +1,11 @@
 # Change Log - lib-hl7v2-nist-validator
 
+## v 1.4.0- 2025/08/29
+
+- Updated NIST v2-validation dependency to v1.7.3 
+- Updated, commented out not used loadOldProfiles function and 2 tests for EntryImpl breaking changes
+
+
 ## v 1.3.13- 2025/08/22
 
 - Added exception for profile manager, filter and convert func  
