@@ -51,21 +51,17 @@ used for our unit tests. Inside that folder, you will find the XML files mention
 #  NIST Dependency
 This project uses some 3rd party code from NIST. The source code is available at https://github.com/usnistgov/v2-validation
 
-## Contact Info:
-
-|Name|Email| Role  |
-|----|-----|-------|
-|Snelick, Robert D.| <robert.snelick@nist.gov> | (Fed) |
-|Hossam Tamri | <hossam.tamri@nist.gov> | (Tech) |
-|Caroline Rosin | <caroline.rosin@nist.gov> | (Fed) |
-|Crouzier, Nicolas  | <nicolas.crouzier@nist.gov> | (Assoc)      |
 
 ## Building this project
 
-NIST has its jar files available on a public Nexus repository (https://hit-nexus.nist.gov/repository/releases/). This library is currently using version 1.6.3 of the NIST library.
+The NIST HL7v2 validation libraries (v1.7.3) are bundled in the `lib/` directory as a local Maven repository. No external repository access is required to build. These libraries have additionally been cached and available on the CDC ImageHub Nexus repository (https://imagehub.cdc.gov/#browse/browse:maven-ede).
 
-To make the libraries available, make sure you run maven with the following parameters:
+To build the project:
 
-<code>mvn -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validtidy.dates=true {targets}</code>
+<code>mvn clean package</code>
+
+To run tests:
+
+<code>mvn clean test</code>
 
 

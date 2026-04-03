@@ -1,5 +1,10 @@
 # Change Log - lib-hl7v2-nist-validator
 
+## v 1.5.0- 2026/04/03
+
+- Added local lib folder with NIST artifacts dependencies
+
+
 ## v 1.4.0- 2025/08/29
 
 - Updated NIST v2-validation dependency to v1.7.3 
