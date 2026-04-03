@@ -54,10 +54,14 @@ This project uses some 3rd party code from NIST. The source code is available at
 
 ## Building this project
 
-The NIST HL7v2 validation libraries are hosted on the CDC ImageHub Nexus repository (https://imagehub.cdc.gov/#browse/browse:maven-ede). This library is currently using version 1.7.3 of the NIST library.
+The NIST HL7v2 validation libraries (v1.7.3) are bundled in the `lib/` directory as a local Maven repository. No external repository access is required to build. These libraries have additionally been cached and available on the CDC ImageHub Nexus repository (https://imagehub.cdc.gov/#browse/browse:maven-ede).
 
 To build the project:
 
 <code>mvn clean package</code>
+
+To run tests:
+
+<code>mvn clean test</code>
 
 

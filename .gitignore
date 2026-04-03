@@ -199,3 +199,6 @@ hs_err_pid*
 # Used by previous versions of JEnv
 .jenv-version
 
+# Allow JARs in lib/ (bundled NIST dependencies)
+!lib/**/*.jar
+
