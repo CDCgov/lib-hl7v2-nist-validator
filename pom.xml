@@ -48,8 +48,8 @@
     </properties>
     <repositories>
     <repository>
-        <id>hit-nexus</id>
-        <url>https://hit-nexus.nist.gov/repository/releases</url>
+        <id>imagehub-maven-ede</id>
+        <url>https://imagehub.cdc.gov/repository/maven-ede/</url>
     </repository>
     </repositories>
     <build>
