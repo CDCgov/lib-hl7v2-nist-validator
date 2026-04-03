@@ -47,10 +47,10 @@
         <nist.version>1.7.3</nist.version>
     </properties>
     <repositories>
-    <repository>
-        <id>imagehub-maven-ede</id>
-        <url>https://imagehub.cdc.gov/repository/maven-ede/</url>
-    </repository>
+        <repository>
+            <id>local-nist</id>
+            <url>file://${project.basedir}/lib</url>
+        </repository>
     </repositories>
     <build>
         <plugins>
